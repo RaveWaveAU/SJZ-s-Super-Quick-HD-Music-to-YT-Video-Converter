@@ -1,0 +1,2 @@
+# SJZ-s-Super-Quick-HD-Music-to-YT-Video-Converter
+Solves the age-old problem of uploading full albums / mixtapes / DJ sets to YouTube in a quick &amp; efficient manner. Uses the open source FFMPEG (download separately) &amp; some FPS trickery to deliver a ~150MB output file at 1080p (.MP4) with YouTube's preferred AAC audio format (320kbps, so ensure your source audio is lossless), in about 5-10mins.
