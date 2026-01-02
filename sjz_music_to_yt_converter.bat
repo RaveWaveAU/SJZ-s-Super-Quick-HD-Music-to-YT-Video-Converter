@@ -14,27 +14,19 @@ REM --------------------------
 REM Change folder or filenames as needed! On Windows, Shift+Ctrl+C will copy a file or folder as a Path for you to paste below.
 REM --------------------------
 REM Full path to your static image (JPEG, PNG, etc.)
-set "IMAGE=C:\EXAMPLE.jpg"
+set "IMAGE=C:\Users\user\Downloads\R-2590663-1319236717.jpg"
 
 REM Full path to your audio file (WAV, FLAC, MP3, etc.)
-set "AUDIO=D:\EXAMPLE.WAV"
+set "AUDIO=C:\Users\user\OneDrive\Desktop\05 - Lani - Reach for the Sky.wav"
 
 REM Output path for the resulting video (.mp4)
-set "OUTPUT=D:\output.mp4"
+set "OUTPUT=C:\Users\user\Downloads\LaniSky.mp4"
 
 REM --------------------------
 REM === FFmpeg COMMAND ===
 REM --------------------------
-REM Breakdown of FFmpeg options:
-REM -loop 1                  : Repeat the input image for the entire video duration
-REM -framerate 2             : Number of frames per second (2 fps is enough for static images)
-REM -i IMAGE                 : Input image file
-REM -i AUDIO                 : Input audio file
-REM -vf "scale=1920:1080..." : Scale video to 1080p, keep aspect ratio, pad black bars if needed
-REM -c:v libx264             : Video codec H.264 (widely supported)
-REM -preset veryfast         : Encoding speed/efficiency tradeoff
-REM -crf 18                  : Constant Rate Factor (quality, lower = better)
-REM -tune stillimage          : Optimize encoding for static images
-REM -pix_fmt yuv420p         : Pixel format (required for compatibility)
-REM -c:a aac -b:a 320k       : Audio codec AAC at 320 kbps (high quality, compatible)
-RE
+ffmpeg -loop 1 -framerate 2 -i "%IMAGE%" -i "%AUDIO%" -vf "scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,format=yuv420p" -c:v libx264 -preset veryfast -crf 18 -tune stillimage -pix_fmt yuv420p -c:a aac -b:a 320k -shortest "%OUTPUT%"
+
+echo Done! Output file: %OUTPUT%
+pause
+
